@@ -9,9 +9,10 @@ public class TSPSolver {
 	public TSPSolver() {
 		model = new TSPModel();
 	}
-	
+
 	public void solve() {
 		model.solve();
+		System.out.println("\nOutput:");
 		model.printSolution();
 	}
 
@@ -19,6 +20,8 @@ public class TSPSolver {
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))) {
 			double[][] out;
 			String line = bufferedReader.readLine();
+			if (line == null) throw new Exception("File empty");
+			System.out.println("Input:\n" + line);
 			int n = Integer.parseInt(line.trim()) + 1;
 			int i = 0;
 			out = new double[n][n];
@@ -29,6 +32,7 @@ public class TSPSolver {
 			}
 			model.setInput(out);
 		} catch (Exception e) {
+			e.getMessage();
 			e.printStackTrace();
 		}
 	}
